@@ -15,7 +15,7 @@
 
                 <p:growl id="messages" showDetail="true"/>
 
-                <p:dataTable var="customer" value="#{tableBean.customers}" id="carList" editable="true">
+                <p:dataTable var="car" value="#{tableBean.carsSmall}" id="carList" editable="true">
 
                     <f:facet name="header">
                         In-Cell Editing
@@ -24,49 +24,41 @@
                     <p:ajax event="rowEdit" listener="#{tableBean.onEdit}" update=":form:messages" />
                     <p:ajax event="rowEditCancel" listener="#{tableBean.onCancel}" update=":form:messages" />
                     
-                    
-                    <p:column headerText="Nro" style="width:30%">
+                    <p:column headerText="Model" style="width:30%">
                         <p:cellEditor>
-                            <f:facet name="output"><h:outputText value="#{customer.row}" /></f:facet>
-                            <f:facet name="input"><p:inputText id="modelInput" value="#{customer.row}" style="width:100%"/></f:facet>
-                        </p:cellEditor>
-                    </p:column>
-                    
-                    <p:column headerText="Descripcion" style="width:30%">
-                        <p:cellEditor>
-                            <f:facet name="output"><h:outputText value="#{customer.descripcion}" /></f:facet>
-                            <f:facet name="input"><p:inputText id="modelInput2" value="#{customer.descripcion}" style="width:100%"/></f:facet>
+                            <f:facet name="output"><h:outputText value="#{car.model}" /></f:facet>
+                            <f:facet name="input"><p:inputText id="modelInput" value="#{car.model}" style="width:100%"/></f:facet>
                         </p:cellEditor>
                     </p:column>
 
-                    <p:column headerText="Tarifa" style="width:20%">
+                    <p:column headerText="Year" style="width:20%">
                         <p:cellEditor>
-                            <f:facet name="output"><h:outputText value="#{customer.tarifa}" /></f:facet>
-                            <f:facet name="input"><p:inputText value="#{customer.tarifa}" style="width:100%" label="Year"/></f:facet>
+                            <f:facet name="output"><h:outputText value="#{car.year}" /></f:facet>
+                            <f:facet name="input"><p:inputText value="#{car.year}" style="width:100%" label="Year"/></f:facet>
                         </p:cellEditor>
                     </p:column>
 
-<!--                    <p:column headerText="Licencias" style="width:24%">
+                    <p:column headerText="Manufacturer" style="width:24%">
                         <p:cellEditor>
-                            <f:facet name="output"><h:outputText value="#{customer.nrolicencia}" /></f:facet>
+                            <f:facet name="output"><h:outputText value="#{car.manufacturer}" /></f:facet>
                             <f:facet name="input">
-                                <h:selectOneMenu value="#{customer.nrolicencia}" style="width:100%">
-                                    <f:selectItems value="#{tableBean.nrolicencia}" var="man" itemLabel="#{nrolicencia}" itemValue="#{nrolicencia}" />
+                                <h:selectOneMenu value="#{car.manufacturer}" style="width:100%">
+                                    <f:selectItems value="#{tableBean.manufacturers}" var="man" itemLabel="#{man}" itemValue="#{man}" />
                                 </h:selectOneMenu>
                             </f:facet>
                         </p:cellEditor>
-                    </p:column>-->
+                    </p:column>
 
-<!--                    <p:column headerText="Confirmado" style="width:20">
+                    <p:column headerText="Color" style="width:20">
                         <p:cellEditor>
-                            <f:facet name="output"><h:outputText value="#{customer.confirmado}" /></f:facet>
+                            <f:facet name="output"><h:outputText value="#{car.color}" /></f:facet>
                             <f:facet name="input">
-                                <h:selectOneMenu value="#{customer.confirmado}" style="width:100%">
-                                    <f:selectItems value="#{tableBean.confirmado}" var="color" itemLabel="#{confirmado}" itemValue="#{confirmado}" />
+                                <h:selectOneMenu value="#{car.color}" style="width:100%">
+                                    <f:selectItems value="#{tableBean.colors}" var="color" itemLabel="#{color}" itemValue="#{color}" />
                                 </h:selectOneMenu>
                             </f:facet>
                         </p:cellEditor>
-                    </p:column>-->
+                    </p:column>
 
                     <p:column style="width:6%">
                         <p:rowEditor />

@@ -16,12 +16,64 @@
             <p:dialog header="Enter FirstName" widgetVar="dlg" resizable="false">
                 <h:form id="form">
 
-                    <h:panelGrid columns="2" style="margin-bottom:10px">
-                        <h:outputLabel for="firstname" value="Firstname:" />
-                        <p:inputText id="firstname" value="#{pprBean.firstname}" />
+                    <h:panelGrid columns="3" cellpadding="0" style="margin-bottom:100px"> 
+                        <!--<h:panelGrid columns="16" style="margin-bottom:100px">-->
+                        <!--                        <h:outputLabel for="firstname" value="Firstname:" />
+                                                <p:inputText id="firstname" value="#{pprBean.firstname}" />-->
+
+                        <h:outputLabel for="name" value="Nombre para mostrar: (@Size(min=0,max=45))" />  
+                        <p:inputText id="name" value="#{validationBean.name}" label="Name"/>  
+                        <p:message for="name" />  
+                        <h:outputText value="#{validationBean.name}" />  
+
+                        <h:outputLabel for="bussiness" value="Empresa: (@Size(min=0,max=45))" />  
+                        <p:inputText id="bussiness" value="#{validationBean.name}" label="Name"/>  
+                        <p:message for="bussiness" />  
+                        <h:outputText value="#{validationBean.name}" />        
+
+
+                        <!--            <h:outputLabel for="age" value="Numero de RUC" />  
+                                    <p:inputText id="age" value="#{validationBean.age}" label="Age"/>  
+                                    <p:message for="age" />  
+                                    <h:outputText value="#{validationBean.age}" />  -->
+
+                        <!--            <h:outputLabel for="amount" value="Amount: (@DecimalMax('99.9'))" />  
+                                    <p:inputText id="amount" value="#{validationBean.amount}" label="Amount"/>  
+                                    <p:message for="amount" />  
+                                    <h:outputText value="#{validationBean.amount}" />  -->
+
+                        <!--            <h:outputLabel for="amount2" value="Amount: (@Digits(integer=3,fraction=2))" />  
+                                    <p:inputText id="amount2" value="#{validationBean.amount2}" label="Amount 2"/>  
+                                    <p:message for="amount2" />  
+                                    <h:outputText value="#{validationBean.amount2}" />  -->
+
+                        <h:outputLabel for="pattern" value="Numero de RUC: (@Pattern(regexp='[^0-9]'))" />
+                        <p:inputText id="pattern" value="#{validationBean.pattern}" label="pattern"/>  
+                        <p:message for="pattern" />  
+                        <h:outputText value="#{validationBean.pattern}" />  
+
+                        <!--            <h:outputLabel for="checked" value="Assert: (@AssertTrue)" />  
+                                    <p:selectBooleanCheckbox id="checked" value="#{validationBean.checked}" />  
+                                    <p:message for="checked" />  -->
+                        <!--            <h:outputText/>  -->
+
+                        <h:outputLabel for="psstDate" value="Date (@Past)"/>                                  
+                        <p:inputText id="psstDate" value="#{validationBean.pastDate}">  
+                            <f:convertDateTime pattern="dd/MM/yyyy" />  
+                        </p:inputText>   
+                        <p:message for="psstDate" />  
+                        <h:outputText/>  
+
+                        <!--            <h:outputLabel for="futureDate" value="Date (@Future)"/>                                  
+                                    <p:inputText id="futureDate" value="#{validationBean.futureDate}">  
+                                        <f:convertDateTime pattern="MM/dd/yyyy" />  
+                                    </p:inputText>   -->
+                        <!--<p:message for="futureDate" />-->  
+                        <!--<h:outputText/>-->  
                     </h:panelGrid>
 
-                    <p:commandButton id="submitButton" value="Submit" update=":display" oncomplete="PF('dlg').hide();"/>
+                    <p:commandButton value="Save" ajax="false" icon="ui-icon-check" validateClient="true"/>
+                    <!--<p:commandButton id="submitButton" value="Submit" update=":display" oncomplete="PF('dlg').hide();"/>-->
 
                 </h:form>
             </p:dialog>

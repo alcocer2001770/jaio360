@@ -1,10 +1,10 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui"
-	template="../templates/ui.xhtml">
-            
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="../templates/ui.xhtml">
+
     <ui:define name="head">
         <style type="text/css">
             .label, column {
@@ -13,28 +13,98 @@
         </style>
     </ui:define>
 
-	<ui:define name="content">
+    <ui:define name="content">
 
-		<h1 class="title ui-widget-header ui-corner-all">SelectManyMenu</h1>
-		<div class="entry">
-            <p>SelectManyMenu extends standard SelectManyMenu with advanced styling and custom content support.</p>
+        <h1 class="title ui-widget-header ui-corner-all">Nombre del proyecto de evaluacion</h1>
+        <div class="entry">
+            <!--<p>SelectManyMenu extends standard SelectManyMenu with advanced styling and custom content support.</p>-->
 
-			<h:form id="form">
+            <h:form id="form">
 
+                
+                
                 <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5"
                              columnClasses="label, column">
 
-                    <h:outputText value="Basic" />
-                    <p:selectManyMenu id="basic" value="#{formBean.selectedOptions}">
-                        <f:selectItem itemLabel="Option 1" itemValue="Option 1" />
-                        <f:selectItem itemLabel="Option 2" itemValue="Option 2" />
-                        <f:selectItem itemLabel="Option 3" itemValue="Option 3" />
-                    </p:selectManyMenu>
-
-                    <h:outputText value="Advanced" />
-                    <p:selectManyMenu id="scroll" value="#{autoCompleteBean.selectedPlayers}" converter="player" style="width:150px;height:200px" var="p" showCheckbox="true">
-                        <f:selectItems value="#{autoCompleteBean.players}" var="player" itemLabel="#{player.name}" itemValue="#{player}" />
+                    <!--                    <h:outputText value="Basic" />
+                                        <p:selectManyMenu id="basic" value="#{formBean.selectedOptions}">
+                                            <f:selectItem itemLabel="Option 1" itemValue="Option 1" />
+                                            <f:selectItem itemLabel="Option 2" itemValue="Option 2" />
+                                            <f:selectItem itemLabel="Option 3" itemValue="Option 3" />
+                                        </p:selectManyMenu>-->
                     
+                  <p:growl id="msg" showDetail="true" escape="false" />
+
+<!--                <h3 style="margin-top:0">Basic PickList</h3>
+                <p:pickList id="pickList" value="#{pickListBean.cities}" var="city" 
+                            itemLabel="#{city}" itemValue="#{city}" />
+
+                <p:commandButton id="citySubmit" value="Submit" update="displayCities" oncomplete="PF('cityDialog').show()" style="margin-top:5px"/>-->
+
+                <h3>PickList on Steroids: Pojo Support with Effect, Captions, Custom Content, Reordering, Filtering, Checkboxes and Ajax Transfer</h3>
+                <p:pickList id="pojoPickList" value="#{pickListBean.players}" var="player" effect="bounce"
+								itemValue="#{player}" itemLabel="#{player.name}" converter="player"
+                                showSourceControls="true" showTargetControls="true" showCheckbox="true"
+                                showSourceFilter="true" showTargetFilter="true" filterMatchMode="contains" >
+                    
+                    <f:facet name="sourceCaption">Available</f:facet>
+                    <f:facet name="targetCaption">Starting</f:facet>
+                    
+                    <p:ajax event="transfer" listener="#{pickListBean.onTransfer}" update="msg" />
+                    
+                    <p:column style="width:25%">
+                        <p:graphicImage value="/images/barca/#{player.photo}" width="30" height="40" />
+                    </p:column>
+                    
+                     <p:column style="width:75%;">
+                        #{player.name}
+                    </p:column>
+                    
+                </p:pickList>
+                
+
+                <p:commandButton id="pojoSubmit" value="Submit" update="displayPlayers" oncomplete="PF('playerDialog').show()" style="margin-top:5px"/>
+
+<!--                <p:dialog modal="true" showEffect="fade" hideEffect="fade" widgetVar="cityDialog">
+                    <h:panelGrid id="displayCities" columns="2">
+                        <h:outputText value="Source: " style="font-weight:bold"/>
+                         <ui:repeat value="#{pickListBean.cities.source}" var="item">
+                            <h:outputText value="#{item}" style="margin-right:5px" />
+                        </ui:repeat>
+
+                        <h:outputText value="Target: " style="font-weight:bold"/>
+                        <ui:repeat value="#{pickListBean.cities.target}" var="item">
+                            <h:outputText value="#{item}" style="margin-right:5px" />
+                        </ui:repeat>
+                    </h:panelGrid>
+                </p:dialog>-->
+
+                <p:dialog modal="true" showEffect="fade" hideEffect="fade" widgetVar="playerDialog">
+                    <h:panelGrid id="displayPlayers" columns="2">
+                        <h:outputText value="Source: " style="font-weight:bold"/>
+                        <ui:repeat value="#{pickListBean.players.source}" var="player">
+                            <h:outputText value="#{player.name}" style="margin-right:5px" />
+                        </ui:repeat>
+
+                        <h:outputText value="Target: " style="font-weight:bold"/>
+                        <ui:repeat value="#{pickListBean.players.target}" var="player">
+                            <h:outputText value="#{player.name}" style="margin-right:5px" />
+                        </ui:repeat>
+                    </h:panelGrid>
+                </p:dialog>
+                    
+                    <p:panel id="pnl" header="Cuestionario 1">
+                        <h:outputText value="I am actually a regular p:panel." />
+                        
+                    </p:panel>
+                    <p:draggable for="pnl" />
+
+<!--                    
+                    
+                    <h:outputText value="Cuestionarios" />
+                    <p:selectManyMenu id="scroll" value="#{autoCompleteBean.selectedCuestionarios}" converter="cuestionario" style="width:150px;height:200px" var="p" showCheckbox="true">
+                        <f:selectItems value="#{autoCompleteBean.cuestionarios}" var="cuestionario" itemLabel="#{cuestionario.name}" itemValue="#{cuestionario}" />
+
                         <p:column>
                             <p:graphicImage value="/images/barca/#{p.photo}" width="40"/>
                         </p:column>
@@ -42,7 +112,21 @@
                         <p:column>
                             #{p.name} - #{p.number}
                         </p:column>
+                          <p:draggable for="scroll" />
                     </p:selectManyMenu>
+
+                    <h:outputText value="Respuestas" />
+                    <p:selectManyMenu id="scroll2" value="#{autoCompleteBean.selectedRespuestas}" converter="respuesta" style="width:150px;height:200px" var="p" showCheckbox="true">
+                        <f:selectItems value="#{autoCompleteBean.respuestas}" var="respuesta" itemLabel="#{respuesta.name}" itemValue="#{respuesta}" />
+
+                        <p:column>
+                            <p:graphicImage value="/images/barca/#{p.photo}" width="40"/>
+                        </p:column>
+
+                        <p:column>
+                            #{p.name} - #{p.number}
+                        </p:column>
+                    </p:selectManyMenu>-->
 
                 </h:panelGrid>
 
@@ -54,18 +138,21 @@
                             #{option}
                         </p:dataList>
 
-                        <p:dataList id="selectedPlayers" value="#{autoCompleteBean.selectedPlayers}" var="player">
-                            #{player.name}
+                        <p:dataList id="selectedCuestionarios" value="#{autoCompleteBean.selectedCuestionarios}" var="cuestionarios">
+                            #{cuestionario.name}
                         </p:dataList>
                     </p:outputPanel>
                 </p:dialog>
+                
+              
 
-			</h:form>
 
-			<h3>Source</h3>
-			<p:tabView>
-				<p:tab title="selectManyMenu.xhtml">
-					<pre name="code" class="xml">
+            </h:form>
+
+            <h3>Source</h3>
+            <p:tabView>
+                <p:tab title="selectManyMenu.xhtml">
+                    <pre name="code" class="xml">
 &lt;h:form id="form"&gt;
 
     &lt;h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5"
@@ -108,12 +195,12 @@
     &lt;/p:dialog&gt;
 
 &lt;/h:form&gt;
-					</pre>
+                    </pre>
 
                 </p:tab>
-			</p:tabView>
+            </p:tabView>
 
-		</div>
+        </div>
 
-	</ui:define>
+    </ui:define>
 </ui:composition>

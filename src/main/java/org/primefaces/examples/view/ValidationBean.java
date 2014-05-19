@@ -45,9 +45,17 @@ public class ValidationBean {
        
     private Date date;
     
-    @Size(min=2,max=5)
+    @Size(min=0,max=145)
     private String name;
     
+    
+     @Size(min=0,max=145)
+    private String bussiness;
+     
+     @Size(min=0,max=145)
+    private String razon_social;
+
+        
     @Min(10) @Max(20)
     private Integer age;
     
@@ -207,4 +215,21 @@ public class ValidationBean {
     public void setPattern(String pattern) {
         this.pattern = pattern;
     }
+    
+    public String getBussiness() {
+        return bussiness;
+    }
+
+    public void setBussiness(String bussiness) {
+        this.bussiness = bussiness;
+    }
+    
+    public String getRazon_social() {
+        return razon_social;
+    }
+
+    public void setRazon_social(String razon_social) {
+        this.razon_social = razon_social;
+    }
+    
 }

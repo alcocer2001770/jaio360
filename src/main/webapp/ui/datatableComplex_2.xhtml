@@ -35,6 +35,26 @@
                         <!--<h:panelGrid columns="16" style="margin-bottom:100px">-->
                         <!--                        <h:outputLabel for="firstname" value="Firstname:" />
                                                 <p:inputText id="firstname" value="#{pprBean.firstname}" />-->
+                        
+                         <h:outputText value="Country: " />
+                        <p:selectOneMenu id="country" value="#{pprBean.country}" style="margin-right:10px">
+                            <f:selectItem itemLabel="Select Country" itemValue="" />
+                            <f:selectItems value="#{pprBean.country}" />
+                            <p:ajax listener="#{pprBean.handleCountryChange}" update="cities"/>
+                        </p:selectOneMenu>
+                        
+                        <h:outputText value="City: " />
+                        <p:selectOneMenu id="city" value="#{pprBean.city}" style="margin-right:10px">
+                            <f:selectItem itemLabel="Select City" itemValue="" />
+                            <f:selectItems value="#{pprBean.cities}" />
+                            <p:ajax listener="#{pprBean.handleCityChange}" update="suburbs"/>
+                        </p:selectOneMenu>
+
+                        <h:outputText value="Suburb: " />
+                        <p:selectOneMenu id="suburbs" value="#{pprBean.suburb}" style="margin-right:10px">
+                            <f:selectItem itemLabel="Select Suburb" itemValue="" />
+                            <f:selectItems value="#{pprBean.suburbs}" />
+                        </p:selectOneMenu>
 
                         <h:outputLabel for="name" value="Nombre para mostrar: (@Size(min=0,max=45))" />  
                         <p:inputText id="name" value="#{validationBean.name}" label="Name"/>  

@@ -22,6 +22,15 @@
         <converter-id>player</converter-id>
         <converter-class>org.primefaces.examples.view.PlayerConverter</converter-class>
     </converter>
+      <converter>
+        <converter-id>cuestionario</converter-id>
+        <converter-class>org.primefaces.examples.view.CuestionarioConverter</converter-class>
+    </converter>
+    <converter>
+        <converter-id>respuesta</converter-id>
+        <converter-class>org.primefaces.examples.view.RespuestaConverter</converter-class>
+    </converter>
+    
     <converter>
         <converter-id>colorPickerConverter</converter-id>
         <converter-class>org.primefaces.examples.view.ColorPickerConverter</converter-class>

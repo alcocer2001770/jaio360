@@ -12,54 +12,88 @@
 
             <h:form id="form">
                 
-              <p:dataTable var="user" value="#{tableBean.users}" rowKey="#{user.email}" paginator="true" rows="10"
-                            selection="#{tableBean.selectedUser}" selectionMode="single"  filteredValue="#{tableBean.filteredUsers}" id="usersTable">
-                    
-                    <p:ajax event="rowSelect" update=":form:display" oncomplete="PF('userDialog').show()" />
+                <p:dataTable id="usersTable" var="user" value="#{tableBean.users}">
 
                     <f:facet name="header">
-                        Lista de Usuarios
+                        Mantenimiento de Cuentas
                     </f:facet>
-					
-					<p:column headerText="Email" sortBy="email" filterBy="email" id="email">
-						#{user.email}
-					</p:column>
-	
-					<p:column headerText="Firstname" sortBy="firstname" filterBy="firstname" id="firstname">
-						#{user.firstname}
-					</p:column>
-	
-					<p:column headerText="Bussiness" sortBy="bussiness" filterBy="bussiness" id="bussiness">
-						#{user.bussiness}
-					</p:column>
-	
-					<p:column headerText="Creationdate" sortBy="creationdate" filterBy="creationdate" id="creationdate">
-						#{user.creationdate}
-					</p:column>
+                    
+                     <p:commandButton value="Submit" update="display"/>  
 
-				</p:dataTable>
-                <p:dialog header="User Detail" widgetVar="userDialog" resizable="false"
-                          width="200" showEffect="explode" hideEffect="explode">
+                    <p:columnGroup type="header">
+                        <p:row>
+                            <p:column rowspan="2" headerText="User" />
+                            <!--<p:column colspan="2" headerText="Stats" />-->
+                        </p:row>
+                        
+                        <p:row>
+                            <p:column headerText="Usuario" />
+                            <p:column headerText="Descripcion" />
+                            <p:column headerText="Empresa" />
+                            <p:column headerText="Fecha de creacion" />
+                            <p:column headerText="Detalle" />
+                            
+                        </p:row>
+                    </p:columnGroup>
 
-                    <h:panelGrid id="display" columns="2" cellpadding="4">
-
-                        <f:facet name="header">
-                            <p:graphicImage value="/images/cars/#{tableBean.selectedCar.manufacturer}.jpg"/>
+                    <p:subTable var="datos" value="#{user.email}">
+<!--                        <f:facet name="header">
+                          #{user.email} 
                         </f:facet>
+                        
+                        <f:facet name="header">
+                          #{user.firstname} 
+                        </f:facet>
+                        
+                         <f:facet name="header">
+                          #{user.bussiness} 
+                        </f:facet>-->
+                        
+                        
+                        <p:column>
+                          #{user.email} 
+                        </p:column>
+                        
+                        <p:column>
+                          #{user.lastname} 
+                        </p:column>
 
-                        <h:outputText value="Usuario:" />
-                        <h:outputText value="#{tableBean.selectedUser.email}" style="font-weight:bold" />
+                        <p:column>
+                          #{user.firstname} 
+                        </p:column>
+                        
 
-                        <h:outputText value="Descripcion:" />
-                        <h:outputText value="#{tableBean.selectedUser.firstname}" style="font-weight:bold" />
+                        <p:column>
+                          #{user.bussiness} 
+                        </p:column>
+                        
+                        <p:column>
+                          #{user.creationdate} 
+                        </p:column>
 
-                        <h:outputText value="Empresa:" />
-                        <h:outputText value="#{tableBean.selectedUser.bussiness}" style="font-weight:bold" />
-
-                        <h:outputText value="Fecha de creacion:" />
-                        <h:outputText value="#{tableBean.selectedUser.creationdate}" style="font-weight:bold" />
-                    </h:panelGrid>
-                </p:dialog>
+                        
+                        
+<!--                        <p:column>
+                            #{stats.season}
+                        </p:column>
+                        
+                        <p:column>
+                            #{stats.goals}
+                        </p:column>
+                        
+                        <p:column>
+                            #{stats.assists}
+                        </p:column>-->
+                        
+<!--                        <p:columnGroup type="footer">
+                            <p:row>
+                                <p:column footerText="Totals: " style="text-align:right"/>
+                                <p:column footerText="#{player.allGoals}" />
+                                <p:column footerText="#{player.allAssists}" />
+                            </p:row>
+                        </p:columnGroup>-->
+                    </p:subTable>
+                </p:dataTable>
                 
                 
                 

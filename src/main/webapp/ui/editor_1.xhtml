@@ -7,16 +7,16 @@
 
 	<ui:define name="content">
 
-		<h1 class="title ui-widget-header ui-corner-all">Ingrese el titulo del comunicado</h1>
+		<h1 class="title ui-widget-header ui-corner-all">Editor</h1>
 		<div class="entry">
-        <!--<p>Editor is an input component with rich text editing features. Toolbar can be configured with custom controls.</p>-->
+        <p>Editor is an input component with rich text editing features. Toolbar can be configured with custom controls.</p>
 
 			<h:form id="form">
                 
                 <p:editor id="editor" widgetVar="editor" value="#{editorBean.value}" width="600"/>
 
                 <h:panelGrid columns="2" style="margin-top:10px">
-                    <p:commandButton id="submitButton" value="Enviar" update="display" oncomplete="PF('dlg').show()" icon="ui-icon-disk" />
+                    <p:commandButton id="submitButton" value="Submit" update="display" oncomplete="PF('dlg').show()" icon="ui-icon-disk" />
                     <p:commandButton id="clearButton" type="button" value="Clear" onclick="PF('editor').clear()" icon="ui-icon-close" />
                 </h:panelGrid>
 

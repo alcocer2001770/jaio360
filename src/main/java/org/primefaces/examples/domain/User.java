@@ -1,6 +1,7 @@
 package org.primefaces.examples.domain;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class User implements Serializable {
 
@@ -8,6 +9,12 @@ public class User implements Serializable {
 	
 	private String lastname;
 	
+        private String bussiness;
+        
+                
+        private Date creationdate;
+               
+        
 	private Integer age;
 	
 	private String street;
@@ -22,6 +29,19 @@ public class User implements Serializable {
 	
 	private String phone;
 
+        
+         public User (String email, String firstname, String bussiness, Date creationdate) {
+		this.email = email;
+		this.firstname = firstname;
+		this.bussiness = bussiness;
+		this.creationdate = creationdate;
+	}
+
+    public User() {
+        
+    }
+
+  
 	public String getFirstname() {
 		return firstname;
 	}
@@ -93,4 +113,20 @@ public class User implements Serializable {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+        
+           public String getBussiness() {
+        return bussiness;
+    }
+
+    public void setBussiness(String bussiness) {
+        this.bussiness = bussiness;
+    }
+
+    public Date getCreationdate() {
+        return creationdate;
+    }
+
+    public void setCreationdate(Date creationdate) {
+        this.creationdate = creationdate;
+    }
 }

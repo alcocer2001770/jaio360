@@ -1,74 +1,138 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui" template="../templates/ui.xhtml">
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui" template="../templates/ui.xhtml">
 
-	<ui:define name="content">
+    <ui:define name="content">
 
-		<h1 class="title ui-widget-header ui-corner-all">SelectOneRadio</h1>
-		<div class="entry">
-			<p>SelectOneRadio extends standard SelectOneRadio with skinning
-				capabilities and custom layout feature.</p>
+        <h1 class="title ui-widget-header ui-corner-all">Nombre del Proyecto de la Evaluacion</h1>
+        <div class="entry">
+            <p>Instructivo del cuestionario, encabezado de cómo responder a cada pregunta</p>
 
-			<h:form id="form">
+            <h:form id="form">
 
-				<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+                <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
 
-					<h:outputText value="Options: " />
-					<p:selectOneRadio id="options" value="#{formBean.number}">
-						<f:selectItem itemLabel="Option 1" itemValue="1" />
-						<f:selectItem itemLabel="Option 2" itemValue="2" />
-						<f:selectItem itemLabel="Option 3" itemValue="3" />
-					</p:selectOneRadio>
+                    <h:outputText value="Pregunta 1.1:" />
+                    <p:selectOneRadio id="options" value="#{formBean.number}">
+                        <f:selectItem itemLabel="Totalmente de acuerdo" itemValue="1" />
+                        <f:selectItem itemLabel="De acuerdo" itemValue="2" />
+                        <f:selectItem itemLabel="En desacuerdo" itemValue="3" />
+                        <f:selectItem itemLabel="Totalmente en desacuerdo" itemValue="4" />
 
-				</h:panelGrid>
+                    </p:selectOneRadio>
 
-				<h3>Custom Layout</h3>
-				<p:outputPanel id="customPanel">
-					<p:selectOneRadio id="customRadio" value="#{formBean.option}"
-						layout="custom">
-						<f:selectItem itemLabel="Option 1" itemValue="1" />
-						<f:selectItem itemLabel="Option 2" itemValue="2" />
-						<f:selectItem itemLabel="Option 3" itemValue="3" />
-					</p:selectOneRadio>
+                    <h3>Comentarios</h3>  
+                    <!--<p>Following inputTextarea send a query for each word that has at least 4 characters to the complete method. Try typing "PrimeFaces".</p>-->  
+                    <p:inputTextarea rows="3" cols="50" completeMethod="#{autoCompleteBean.completeArea}" queryDelay="250" minQueryLength="4" /> 
 
-					<h:panelGrid columns="3">
-						<p:radioButton id="opt1" for="customRadio" itemIndex="0" />
-						<h:outputLabel for="opt1" value="Option 1" />
-						<p:spinner />
+                    
+                     <h:outputText value="Pregunta 1.2:" />
+                    <p:selectOneRadio id="options2" value="#{formBean.number}">
+                        <f:selectItem itemLabel="Totalmente de acuerdo" itemValue="1" />
+                        <f:selectItem itemLabel="De acuerdo" itemValue="2" />
+                        <f:selectItem itemLabel="En desacuerdo" itemValue="3" />
+                        <f:selectItem itemLabel="Totalmente en desacuerdo" itemValue="4" />
 
-						<p:radioButton id="opt2" for="customRadio" itemIndex="1" />
-						<h:outputLabel for="opt2" value="Option 2" />
-						<p:inputText />
+                    </p:selectOneRadio>
 
-						<p:radioButton id="opt3" for="customRadio" itemIndex="2" />
-						<h:outputLabel for="opt3" value="Option 3" />
-						<p:calendar />
-					</h:panelGrid>
-				</p:outputPanel>
+                    <h3>Comentarios</h3>  
+                    <!--<p>Following inputTextarea send a query for each word that has at least 4 characters to the complete method. Try typing "PrimeFaces".</p>-->  
+                    <p:inputTextarea rows="3" cols="50" completeMethod="#{autoCompleteBean.completeArea}" queryDelay="250" minQueryLength="4" /> 
+                    
+                    
+                      <h:outputText value="Pregunta 1.3:" />
+                    <p:selectOneRadio id="options3" value="#{formBean.number}">
+                        <f:selectItem itemLabel="Totalmente de acuerdo" itemValue="1" />
+                        <f:selectItem itemLabel="De acuerdo" itemValue="2" />
+                        <f:selectItem itemLabel="En desacuerdo" itemValue="3" />
+                        <f:selectItem itemLabel="Totalmente en desacuerdo" itemValue="4" />
 
-				<br />
-				<br />
+                    </p:selectOneRadio>
 
-				<p:commandButton id="submitButton" value="Submit" update="display" />
+                    <h3>Comentarios</h3>  
+                    <!--<p>Following inputTextarea send a query for each word that has at least 4 characters to the complete method. Try typing "PrimeFaces".</p>-->  
+                    <p:inputTextarea rows="3" cols="50" completeMethod="#{autoCompleteBean.completeArea}" queryDelay="250" minQueryLength="4" /> 
+                    
+                    <h:outputText value="Pregunta 1.4:" />
+                    <p:selectOneRadio id="options4" value="#{formBean.number}">
+                        <f:selectItem itemLabel="Totalmente de acuerdo" itemValue="1" />
+                        <f:selectItem itemLabel="De acuerdo" itemValue="2" />
+                        <f:selectItem itemLabel="En desacuerdo" itemValue="3" />
+                        <f:selectItem itemLabel="Totalmente en desacuerdo" itemValue="4" />
 
-				<br />
-				<br />
+                    </p:selectOneRadio>
 
-				<h:panelGrid columns="2" id="display">
-					<h:outputText value="Value1:" />
-					<h:outputText id="value1" value="#{formBean.number}" />
-					<h:outputText value="Value2:" />
-					<h:outputText id="value2" value="#{formBean.option}" />
-				</h:panelGrid>
+                    <h3>Comentarios</h3>  
+                    <!--<p>Following inputTextarea send a query for each word that has at least 4 characters to the complete method. Try typing "PrimeFaces".</p>-->  
+                    <p:inputTextarea rows="3" cols="50" completeMethod="#{autoCompleteBean.completeArea}" queryDelay="250" minQueryLength="4" /> 
+                    
+                     
+                    <h:outputText value="Pregunta 1.5:" />
+                    <p:selectOneRadio id="options5" value="#{formBean.number}">
+                        <f:selectItem itemLabel="Totalmente de acuerdo" itemValue="1" />
+                        <f:selectItem itemLabel="De acuerdo" itemValue="2" />
+                        <f:selectItem itemLabel="En desacuerdo" itemValue="3" />
+                        <f:selectItem itemLabel="Totalmente en desacuerdo" itemValue="4" />
 
-			</h:form>
+                    </p:selectOneRadio>
 
-			<h3>Source</h3>
-			<p:tabView>
-				<p:tab title="selectOneRadio.xhtml">
-					<pre name="code" class="xml">
+                    <h3>Comentarios</h3>  
+                    <!--<p>Following inputTextarea send a query for each word that has at least 4 characters to the complete method. Try typing "PrimeFaces".</p>-->  
+                    <p:inputTextarea rows="3" cols="50" completeMethod="#{autoCompleteBean.completeArea}" queryDelay="250" minQueryLength="4" /> 
+
+
+
+
+
+                </h:panelGrid>
+
+                <!--				<h3>Custom Layout</h3>
+                                                <p:outputPanel id="customPanel">
+                                                        <p:selectOneRadio id="customRadio" value="#{formBean.option}"
+                                                                layout="custom">
+                                                                <f:selectItem itemLabel="Option 1" itemValue="1" />
+                                                                <f:selectItem itemLabel="Option 2" itemValue="2" />
+                                                                <f:selectItem itemLabel="Option 3" itemValue="3" />
+                                                        </p:selectOneRadio>
+                
+                                                        <h:panelGrid columns="3">
+                                                                <p:radioButton id="opt1" for="customRadio" itemIndex="0" />
+                                                                <h:outputLabel for="opt1" value="Option 1" />
+                                                                <p:spinner />
+                
+                                                                <p:radioButton id="opt2" for="customRadio" itemIndex="1" />
+                                                                <h:outputLabel for="opt2" value="Option 2" />
+                                                                <p:inputText />
+                
+                                                                <p:radioButton id="opt3" for="customRadio" itemIndex="2" />
+                                                                <h:outputLabel for="opt3" value="Option 3" />
+                                                                <p:calendar />
+                                                        </h:panelGrid>
+                                                </p:outputPanel>-->
+
+                <br />
+                <br />
+
+                <p:commandButton id="submitButton" value="Submit" update="display" />
+
+                <br />
+                <br />
+
+                <h:panelGrid columns="2" id="display">
+                    <h:outputText value="Value1:" />
+                    <h:outputText id="value1" value="#{formBean.number}" />
+                    <!--					<h:outputText value="Value2:" />
+                                                            <h:outputText id="value2" value="#{formBean.option}" />-->
+                </h:panelGrid>
+
+            </h:form>
+
+            <h3>Source</h3>
+            <p:tabView>
+                <p:tab title="selectOneRadio.xhtml">
+                    <pre name="code" class="xml">
 &lt;h:form id="form"&gt;
 
     &lt;h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5"&gt;
@@ -115,11 +179,11 @@
     &lt;/h:panelGrid&gt;
 
 &lt;/h:form&gt;
-					</pre>
-				</p:tab>
-			</p:tabView>
+                    </pre>
+                </p:tab>
+            </p:tabView>
 
-		</div>
+        </div>
 
-	</ui:define>
+    </ui:define>
 </ui:composition>

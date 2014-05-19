@@ -23,38 +23,37 @@ import javax.faces.context.FacesContext;
 
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
+import org.primefaces.examples.domain.Cuestionario;
 import org.primefaces.examples.domain.Player;
+import org.primefaces.examples.domain.Respuesta;
 
 public class AutoCompleteBean {
 
-	private String txt1;
-	
-	private String txt2;
-	
-	private String txt3;
-	
-	private String txt4;
-	
-	private String txt5;
-    
+    private String txt1;
+    private String txt2;
+    private String txt3;
+    private String txt4;
+    private String txt5;
     private String txt6;
-    
     private String txt7;
-
-	private Player selectedPlayer1;
-    
+    private Player selectedPlayer1;
     private Player selectedPlayer2;
-
-	private List<Player> players;
-
+    private List<Player> players;
+    private List<Cuestionario> cuestionarios;
+    private List<Respuesta> respuestas;
     private List<Player> selectedPlayers;
+    private List<Cuestionario> selectedCuestionarios;
+    private List<Respuesta> selectedRespuestas;
+
     
     private List<String> selectedTexts;
-	
-	public AutoCompleteBean() {
-		players = PlayerConverter.playerDB;
+
+    public AutoCompleteBean() {
+        players = PlayerConverter.playerDB;
         selectedTexts = new ArrayList<String>();
-	}
+        cuestionarios = CuestionarioConverter.cuestionarioDB;
+        respuestas = RespuestaConverter.respuestaDB;        
+    }
 
     public Player getSelectedPlayer1() {
         return selectedPlayer1;
@@ -72,57 +71,82 @@ public class AutoCompleteBean {
         this.selectedPlayer2 = selectedPlayer2;
     }
 
-	public List<String> complete(String query) {
-		List<String> results = new ArrayList<String>();
-		
-		for(int i = 0; i < 10; i++) {
-			results.add(query + i);
-		}
-		
-		return results;
-	}
-	
-	public List<Player> completePlayer(String query) {
-		List<Player> suggestions = new ArrayList<Player>();
-		
-		for(Player p : players) {
-			if(p.getName().startsWith(query))
-				suggestions.add(p);
-		}
-		
-		return suggestions;
-	}
+    public List<String> complete(String query) {
+        List<String> results = new ArrayList<String>();
+
+        for (int i = 0; i < 10; i++) {
+            results.add(query + i);
+        }
+
+        return results;
+    }
+
+    public List<Player> completePlayer(String query) {
+        List<Player> suggestions = new ArrayList<Player>();
+
+        for (Player p : players) {
+            if (p.getName().startsWith(query)) {
+                suggestions.add(p);
+            }
+        }
+
+        return suggestions;
+    }
     
+       public List<Cuestionario> completeCuestionario(String query) {
+        List<Cuestionario> suggestions = new ArrayList<Cuestionario>();
+
+        for (Cuestionario p : cuestionarios) {
+            if (p.getName().startsWith(query)) {
+                suggestions.add(p);
+            }
+        }
+
+        return suggestions;
+    }
+       
+         public List<Respuesta> completeRespuesta(String query) {
+        List<Respuesta> suggestions = new ArrayList<Respuesta>();
+
+        for (Respuesta p : respuestas) {
+            if (p.getName().startsWith(query)) {
+                suggestions.add(p);
+            }
+        }
+
+        return suggestions;
+    }
+
+
     public List<String> completeArea(String query) {
-		List<String> results = new ArrayList<String>();
-		
-		if(query.equals("PrimeFaces")) {
+        List<String> results = new ArrayList<String>();
+
+        if (query.equals("PrimeFaces")) {
             results.add("PrimeFaces Rocks!!!");
             results.add("PrimeFaces has 100+ components.");
             results.add("PrimeFaces is lightweight.");
             results.add("PrimeFaces is easy to use.");
             results.add("PrimeFaces is developed with passion!");
-        }
-        else {
-            for(int i = 0; i < 10; i++) {
-            	results.add(query + i);
+        } else {
+            for (int i = 0; i < 10; i++) {
+                results.add(query + i);
             }
         }
-		
-		return results;
-	}
-	
-	public void handleSelect(SelectEvent event) {
-		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Selected:" + event.getObject().toString(), null);
-		
-		FacesContext.getCurrentInstance().addMessage(null, message);
-	}
-    
+
+        return results;
+    }
+
+    public void handleSelect(SelectEvent event) {
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Selected:" + event.getObject().toString(), null);
+
+        FacesContext.getCurrentInstance().addMessage(null, message);
+    }
+
     public void handleUnselect(UnselectEvent event) {
-		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Unselected:" + event.getObject().toString(), null);
-		
-		FacesContext.getCurrentInstance().addMessage(null, message);
-	}
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Unselected:" + event.getObject().toString(), null);
+
+        FacesContext.getCurrentInstance().addMessage(null, message);
+    }
 
     public List<Player> getPlayers() {
         return players;
@@ -136,45 +160,45 @@ public class AutoCompleteBean {
         this.selectedPlayers = selectedPlayers;
     }
 
-	public String getTxt1() {
-		return txt1;
-	}
+    public String getTxt1() {
+        return txt1;
+    }
 
-	public void setTxt1(String txt1) {
-		this.txt1 = txt1;
-	}
+    public void setTxt1(String txt1) {
+        this.txt1 = txt1;
+    }
 
-	public String getTxt2() {
-		return txt2;
-	}
+    public String getTxt2() {
+        return txt2;
+    }
 
-	public void setTxt2(String txt2) {
-		this.txt2 = txt2;
-	}
+    public void setTxt2(String txt2) {
+        this.txt2 = txt2;
+    }
 
-	public String getTxt3() {
-		return txt3;
-	}
+    public String getTxt3() {
+        return txt3;
+    }
 
-	public void setTxt3(String txt3) {
-		this.txt3 = txt3;
-	}
-	
-	public String getTxt4() {
-		return txt4;
-	}
+    public void setTxt3(String txt3) {
+        this.txt3 = txt3;
+    }
 
-	public void setTxt4(String txt4) {
-		this.txt4 = txt4;
-	}
+    public String getTxt4() {
+        return txt4;
+    }
 
-	public String getTxt5() {
-		return txt5;
-	}
+    public void setTxt4(String txt4) {
+        this.txt4 = txt4;
+    }
 
-	public void setTxt5(String txt5) {
-		this.txt5 = txt5;
-	}
+    public String getTxt5() {
+        return txt5;
+    }
+
+    public void setTxt5(String txt5) {
+        this.txt5 = txt5;
+    }
 
     public String getTxt6() {
         return txt6;
@@ -195,7 +219,40 @@ public class AutoCompleteBean {
     public List<String> getSelectedTexts() {
         return selectedTexts;
     }
+
     public void setSelectedTexts(List<String> selectedTexts) {
         this.selectedTexts = selectedTexts;
+    }
+
+    public List<Cuestionario> getCuestionarios() {
+        return cuestionarios;
+    }
+
+    public void setCuestionarios(List<Cuestionario> cuestionarios) {
+        this.cuestionarios = cuestionarios;
+    }
+    
+    public List<Cuestionario> getSelectedCuestionarios() {
+        return selectedCuestionarios;
+    }
+
+    public void setSelectedCuestionarios(List<Cuestionario> selectedCuestionarios) {
+        this.selectedCuestionarios = selectedCuestionarios;
+    }
+    
+    public List<Respuesta> getRespuestas() {
+        return respuestas;
+    }
+
+    public void setRespuestas(List<Respuesta> respuestas) {
+        this.respuestas = respuestas;
+    }
+
+    public List<Respuesta> getSelectedRespuestas() {
+        return selectedRespuestas;
+    }
+
+    public void setSelectedRespuestas(List<Respuesta> selectedRespuestas) {
+        this.selectedRespuestas = selectedRespuestas;
     }
 }

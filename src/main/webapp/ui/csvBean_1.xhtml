@@ -19,58 +19,26 @@
 
 	<ui:define name="content">
 	
-		<h1 class="title ui-widget-header ui-corner-all">Mis datos Personales</h1>
+		<h1 class="title ui-widget-header ui-corner-all">Client Side Validation - Bean Validation</h1>
 		<div class="entry">
-			<p></p>
+			<p>Client Side Validation Framework is integrated with Bean Validation Specification.</p>
 
 			<h:form>
-                <p:panel header="Validacion de los datos personales">
+                <p:panel header="Validate">
                     <p:messages />
                     
                     <h:panelGrid columns="4" cellpadding="5">
-                        
-                        <p:panel header="Mis datos personales" >
-                         <h:outputLabel for="name" value="Nombre para mostrar:" />
-                        <p:inputText id="name" value="#{validationBean.name}" label="Name"  size="34"/>
+                        <h:outputLabel for="name" value="Name: (@Size(min=2,max=5))" />
+                        <p:inputText id="name" value="#{validationBean.name}" label="Name"/>
                         <p:message for="name" />
                         <h:outputText value="#{validationBean.name}" />
                         
-                         <h:outputLabel for="email1" value="Correo electronico" />
-                         <p:inputText id="email1" value="#{validationBean.text}" size="44">
-                            <f:validator validatorId="custom.emailValidator" />
-                        </p:inputText>
-                        <p:message for="email1" display="tooltip" />
-                        <h:outputText value="#{validationBean.text}" />
-                        
-                         <!--<h:outputText value="Pais: " />-->
-                         <h:outputLabel for="Pais" value="Pais" />
-                        <p:selectOneMenu id="country" value="#{pprBean.country}" style="margin-right:10px">
-                            <f:selectItem itemLabel="Select Country" itemValue="" />
-                            <f:selectItems value="#{pprBean.countries}" />
-                            <p:ajax listener="#{pprBean.handleCountryChange}" update="cities"/>
-                        </p:selectOneMenu>
-
-                        <h:outputText value="Ciudad: " />
-                        <p:selectOneMenu id="cities" value="#{pprBean.city}" style="margin-right:20px">
-                            <f:selectItem itemLabel="Select City belong" itemValue="" />
-                            <f:selectItems value="#{pprBean.cities}" />
-                        </p:selectOneMenu>
-                       
-                          <h:outputLabel for="psstDate" value="Fecha de nacimiento"/>                                
-                        <p:inputText id="psstDate" value="#{validationBean.pastDate}">
-                            <f:convertDateTime pattern="dd/MM/yyyy" />                                        
-                        </p:inputText> 
-                          <!--<p:inputMask value="#{maskController.date}" mask="99/99/9999"/>--> 
-                        <p:message for="psstDate" />
-                        <h:outputText/>
-                        
-                        
-<!--                        <h:outputLabel for="age" value="Age: (@Min(10) @Max(20))" />
+                        <h:outputLabel for="age" value="Age: (@Min(10) @Max(20))" />
                         <p:inputText id="age" value="#{validationBean.age}" label="Age"/>
                         <p:message for="age" />
-                        <h:outputText value="#{validationBean.age}" />-->
+                        <h:outputText value="#{validationBean.age}" />
                         
-<!--                        <h:outputLabel for="amount" value="Amount: (@DecimalMax('99.9'))" />
+                        <h:outputLabel for="amount" value="Amount: (@DecimalMax('99.9'))" />
                         <p:inputText id="amount" value="#{validationBean.amount}" label="Amount"/>
                         <p:message for="amount" />
                         <h:outputText value="#{validationBean.amount}" />
@@ -78,9 +46,9 @@
                         <h:outputLabel for="amount2" value="Amount: (@Digits(integer=3,fraction=2))" />
                         <p:inputText id="amount2" value="#{validationBean.amount2}" label="Amount 2"/>
                         <p:message for="amount2" />
-                        <h:outputText value="#{validationBean.amount2}" />-->
+                        <h:outputText value="#{validationBean.amount2}" />
                         
-<!--                        <h:outputLabel for="pattern" value="Pattern: (@Pattern(regexp='^[-+]?\\d+$'))" />
+                        <h:outputLabel for="pattern" value="Pattern: (@Pattern(regexp='^[-+]?\\d+$'))" />
                         <p:inputText id="pattern" value="#{validationBean.pattern}" label="pattern"/>
                         <p:message for="pattern" />
                         <h:outputText value="#{validationBean.pattern}" />
@@ -88,68 +56,25 @@
                         <h:outputLabel for="checked" value="Assert: (@AssertTrue)" />
                         <p:selectBooleanCheckbox id="checked" value="#{validationBean.checked}" />
                         <p:message for="checked" />
-                        <h:outputText/>-->
+                        <h:outputText/>
                                               
-                      
-<!--                        <h:outputLabel for="futureDate" value="Date (@Future)"/>                                
+                        <h:outputLabel for="psstDate" value="Date (@Past)"/>                                
+                        <p:inputText id="psstDate" value="#{validationBean.pastDate}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </p:inputText> 
+                        <p:message for="psstDate" />
+                        <h:outputText/>
+                        
+                        <h:outputLabel for="futureDate" value="Date (@Future)"/>                                
                         <p:inputText id="futureDate" value="#{validationBean.futureDate}">
                             <f:convertDateTime pattern="MM/dd/yyyy" />
                         </p:inputText> 
-                        <p:message for="futureDate" />-->
-<!--                        <h:outputText/>-->
-                        
-                        <p:commandButton value="Save" ajax="false" icon="ui-icon-check" validateClient="true"/>
-                        
-                        </p:panel>
-                        
-                    <p:panel header="Cambiar mi contraseña">
-                    <p:messages id="messages" showDetail="true" autoUpdate="true"/>
-                    
-                    <h:panelGrid columns="2" id="matchGrid">                   
-                        <h:outputLabel for="pwd1" value="Nueva contraseña: " />
-                        <p:password id="pwd1" value="#{passwordBean.password5}" match="pwd2" label="Password 1" required="true"/>
-
-                        <h:outputLabel for="pwd2" value="Reingresar contraseña: " />
-                        <p:password id="pwd2" value="#{passwordBean.password5}" label="Password 2" required="true"/>
-                    </h:panelGrid>
-                    
-                    <p:commandButton id="saveButton" update="matchGrid" value="Save" />
-                </p:panel>
-                        
-                        
-                        <p:panel header="Mi empresa"  toggleable="true" >
-                        <h:outputLabel for="name1" value="Nombre para mostrar:" />
-                        <p:inputText id="name1" value="#{validationBean.bussiness}" label="Name1"/>
-                        <p:message for="name1" />
-                        <h:outputText value="#{validationBean.bussiness}" />
-                        
-                        
-                        <h:outputLabel for="name2" value="Razon social:" />
-                        <p:inputText id="name2" value="#{validationBean.razon_social}" label="Name2"/>
-                        <p:message for="name2" />
-                        <h:outputText value="#{validationBean.razon_social}" />
-                        
-                        
-                          <h:outputLabel for="pattern" value="RUC: (@Pattern(regexp='[0-9]*'))" />
-                        <p:inputText id="pattern" value="#{validationBean.pattern}" label="pattern"/>
-                        <p:message for="pattern" />
-                        <h:outputText value="#{validationBean.pattern}" />
-                        <p:commandButton value="Save" ajax="false" icon="ui-icon-check" validateClient="true"/>
-                        
-                         <h:form>
-
-                <p:fileUpload fileUploadListener="#{fileUploadController.handleFileUpload}" mode="advanced" dragDropSupport="false"
-                              update="messages" sizeLimit="100000" fileLimit="3" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
-
-                <p:growl id="messages" showDetail="true"/>
-
-                        </h:form>
-                          </p:panel>
-                        
-                
+                        <p:message for="futureDate" />
+                        <h:outputText/>
+                                                
                     </h:panelGrid>
 
-                    
+                    <p:commandButton value="Save" ajax="false" icon="ui-icon-check" validateClient="true"/>
                 </p:panel>
 			</h:form>
 			
